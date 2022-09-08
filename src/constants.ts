@@ -1,0 +1,2 @@
+export const MOVIE_REPOSITORY = 'MOVIE_REPOSITORY';
+export const DATA_SOURCE = 'DATA_SOURCE';
