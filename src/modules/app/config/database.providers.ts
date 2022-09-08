@@ -17,7 +17,6 @@ export const databaseProviders = [
           join(__dirname, '..', '..', '**', 'entities', '*.entity.js'),
         ],
         synchronize: true,
-        logging: true,
       });
 
       return dataSource.initialize();

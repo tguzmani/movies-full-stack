@@ -12,23 +12,23 @@ export class MoviesService {
     private movieRepository: Repository<Movie>,
   ) {}
 
-  async createMovie(createMovieDto: CreateMovieDto) {
+  async create(createMovieDto: CreateMovieDto) {
     return this.movieRepository.save(createMovieDto);
   }
 
-  async readMovies() {
+  async findAll() {
     return this.movieRepository.find();
   }
 
-  async readMovie(id: number) {
+  async findOne(id: number) {
     return this.movieRepository.findOneBy({ id });
   }
 
-  async updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
+  async update(id: number, updateMovieDto: UpdateMovieDto) {
     return this.movieRepository.update({ id }, updateMovieDto);
   }
 
-  async deleteMovie(id: number) {
+  async remove(id: number) {
     return this.movieRepository.delete({ id });
   }
 }

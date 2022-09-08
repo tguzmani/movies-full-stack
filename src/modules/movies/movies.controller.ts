@@ -17,26 +17,26 @@ export class MoviesController {
 
   @Post()
   create(@Body() createMovieDto: CreateMovieDto) {
-    return this.moviesService.createMovie(createMovieDto);
+    return this.moviesService.create(createMovieDto);
   }
 
   @Get()
   findAll() {
-    return this.moviesService.readMovies();
+    return this.moviesService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.moviesService.readMovie(+id);
+    return this.moviesService.findOne(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
-    return this.moviesService.updateMovie(+id, updateMovieDto);
+    return this.moviesService.update(+id, updateMovieDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.moviesService.deleteMovie(+id);
+    return this.moviesService.remove(+id);
   }
 }
