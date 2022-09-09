@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, HttpException } from '@nestjs/common';
 import { MOVIE_REPOSITORY } from 'src/constants';
 import { Repository } from 'typeorm';
 import { CreateMovieDto } from './dto/create-movie.dto';

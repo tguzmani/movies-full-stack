@@ -11,8 +11,8 @@ export const databaseProviders = [
         host: 'localhost',
         port: 5432,
         username: 'postgres',
-        password: 'gh1290yu',
-        database: 'movies',
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
         entities: [
           join(__dirname, '..', '..', '**', 'entities', '*.entity.js'),
         ],

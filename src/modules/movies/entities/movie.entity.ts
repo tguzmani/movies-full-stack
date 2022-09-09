@@ -9,14 +9,20 @@ export class Movie {
   title: string;
 
   @Column()
-  year: number;
+  releaseDate: Date;
 
   @Column('text', { nullable: true })
   description: string;
 
   @Column({ nullable: true })
-  imageURL: string;
+  posterImage: string;
 
   @Column('int', { default: 0 })
   rating: number;
+
+  @Column('int', { default: 0 })
+  durationMinutes: number;
+
+  @Column()
+  genre: string;
 }
