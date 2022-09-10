@@ -7,14 +7,9 @@ export class CreateMovieDto {
   @IsNotEmpty()
   releaseDate: Date;
 
-  @IsInt()
-  @Max(5)
-  @Min(0)
-  rating: number;
-
   @IsNumber()
   @Min(0)
-  durationMinutes: number;
+  duration: number;
 
   @IsNotEmpty()
   genre: string;

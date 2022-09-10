@@ -20,7 +20,7 @@ export class MoviesService {
     return this.movieRepository.find();
   }
 
-  async findOne(id: number) {
+  async findById(id: number) {
     return this.movieRepository.findOneBy({ id });
   }
 

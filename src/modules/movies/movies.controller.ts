@@ -31,8 +31,8 @@ export class MoviesController {
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.moviesService.findOne(+id);
+  findById(@Param('id') id: string) {
+    return this.moviesService.findById(+id);
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Review } from 'src/modules/reviews/entities/review.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Movie {
@@ -17,12 +18,18 @@ export class Movie {
   @Column({ nullable: true })
   posterImage: string;
 
-  @Column('int', { default: 0 })
-  rating: number;
+  @Column({ nullable: true })
+  backgroundImage: string;
+
+  @Column({ nullable: true })
+  titleImage: string;
 
   @Column('int', { default: 0 })
-  durationMinutes: number;
+  duration: number;
 
   @Column()
   genre: string;
+
+  @OneToMany(() => Review, (review) => review.movie)
+  reviews: Review[];
 }

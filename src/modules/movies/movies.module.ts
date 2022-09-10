@@ -9,5 +9,6 @@ import { moviesProvider } from './movies.provider';
   imports: [DatabaseModule, AuthModule],
   controllers: [MoviesController],
   providers: [...moviesProvider, MoviesService],
+  exports: [MoviesService],
 })
 export class MoviesModule {}

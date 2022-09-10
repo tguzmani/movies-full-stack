@@ -4,16 +4,33 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import {
+  PasswordsDontMatchException,
+  UserAlreadyExistsException,
+} from './users.exceptions';
 
 @Injectable()
 export class UsersService {
+  SALT_ROUNDS = 10;
+
   constructor(
     @Inject(USER_REPOSITORY)
     private userRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto) {
+    const { email, password, passwordConfirm } = createUserDto;
+
+    if (password !== passwordConfirm) throw new PasswordsDontMatchException();
+
+    if (await this.findByEmail(email)) throw new UserAlreadyExistsException();
+
+    const hashedPassword = await bcrypt.hash(password, this.SALT_ROUNDS);
+
+    const user = { ...createUserDto, password: hashedPassword };
+
+    await this.userRepository.save(user);
   }
 
   findAll() {
@@ -29,10 +46,6 @@ export class UsersService {
 
   findByEmail(email: string) {
     return this.userRepository.findOneBy({ email });
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
   }
 
   remove(id: number) {
