@@ -8,13 +8,18 @@ import HomePage from './pages/HomePage'
 
 const Router = () => {
   const privateRoutes = Object.values(routes).filter(route => !route.public)
+  const publicRoutes = Object.values(routes).filter(route => route.public)
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        {/* <Route path='/login' element={<Login />} />
-         <Route path='/register' element={<Register />} /> */}
+        {publicRoutes.map(route => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={<route.element />}
+          />
+        ))}
 
         {privateRoutes.map(route => (
           <Route

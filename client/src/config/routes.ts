@@ -1,10 +1,11 @@
 // import Login from 'modules/users/views/Login'
-import HomePage from '../pages/HomePage'
+import LoginPage from 'pages/LoginPage'
+import HomePage from 'pages/HomePage'
 
 const routes = {
   home: {
     path: '/',
-    element: HomePage,
+    element: LoginPage,
     public: true,
   },
 

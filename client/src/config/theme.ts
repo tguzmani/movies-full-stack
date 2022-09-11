@@ -19,14 +19,6 @@ const theme = createTheme({
         },
       },
     },
-
-    MuiTableRow: {
-      styleOverrides: {
-        root: {
-          '&:last-child td': { border: 0 },
-        },
-      },
-    },
   },
 })
 

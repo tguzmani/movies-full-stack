@@ -13,6 +13,7 @@ import {
 import { ReviewsService } from './reviews.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
+import { AdminGuard } from '../auth/admin.guard';
 
 @Controller('reviews')
 @UseGuards(JwtAuthGuard)
@@ -44,6 +45,7 @@ export class ReviewsController {
     return this.reviewsService.remove(+id);
   }
 
+  @UseGuards(AdminGuard)
   @Delete('/admin/:id')
   removeByAdmin(@Param('id') id: string) {
     return this.reviewsService.remove(+id);
