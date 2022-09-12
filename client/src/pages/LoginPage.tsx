@@ -61,7 +61,8 @@ const LoginPage = () => {
               />
               <TextField
                 fullWidth
-                label='User'
+                label='Password'
+                type='password'
                 margin='normal'
                 {...bindCredentials('password')}
               />

@@ -1,10 +1,11 @@
 import { action, thunk } from 'easy-peasy'
+import Review from '../domain/review.entity'
 import ReviewsRepository from './reviews.repository'
-import MoviesStoreModel from './reviews.store.model'
+import ReviewsStoreModel from './reviews.store.model'
 
 const reviewsRepository = new ReviewsRepository()
 
-const moviesStore: MoviesStoreModel = {
+const reviewsStore: ReviewsStoreModel = {
   currentMovieReviews: [],
   loading: false,
 
@@ -28,6 +29,16 @@ const moviesStore: MoviesStoreModel = {
 
     actions.setLoading(false)
   }),
+
+  createReview: thunk(async (actions, review: Review) => {
+    actions.setLoading(true)
+
+    await reviewsRepository.createReview(review)
+
+    actions.setLoading(false)
+
+    actions.readReviewsByMovie(review?.movieId as number)
+  }),
 }
 
-export default moviesStore
+export default reviewsStore

@@ -1,11 +1,15 @@
 import { Button, Rating, TextField, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
+import { useStoreActions } from 'config/easy-peasy.store'
 import Movie from 'modules/movies/domain/movie.entity'
 import React, { useState } from 'react'
 
 const ManageReview = ({ movie }: { movie?: Movie }) => {
   const [description, setDescription] = useState('')
   const [rating, setRating] = useState(0)
+
+  const { createReview } = useStoreActions(actions => actions.reviews)
+  const { readMovies } = useStoreActions(actions => actions.movies)
 
   const handleChangeDescription = (e: any) => {
     setDescription(e.target.value)
@@ -22,7 +26,8 @@ const ManageReview = ({ movie }: { movie?: Movie }) => {
       movieId: movie?.id,
     }
 
-    console.log(review)
+    createReview(review)
+    readMovies()
   }
 
   const canSubmit = description !== '' && rating > 0

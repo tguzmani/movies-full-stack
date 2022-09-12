@@ -7,6 +7,7 @@ interface Review {
   rating: number
   user?: Partial<User>
   movie?: Partial<Movie>
+  movieId?: number
 }
 
 export default Review

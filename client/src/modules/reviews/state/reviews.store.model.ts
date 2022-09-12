@@ -9,6 +9,7 @@ interface ReviewsStoreModel {
   setLoading: Action<ReviewsStoreModel, boolean>
 
   readReviewsByMovie: Thunk<ReviewsStoreModel, number>
+  createReview: Thunk<ReviewsStoreModel, Review>
 }
 
 export default ReviewsStoreModel

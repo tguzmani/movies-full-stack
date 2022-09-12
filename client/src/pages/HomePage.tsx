@@ -20,7 +20,7 @@ const HomePage = () => {
 
   const matchMd = useResponsive('md')
 
-  const titleVariant = matchMd ? 'h3' : 'h5'
+  const titleVariant = matchMd ? 'h4' : 'h5'
   const iconSize = matchMd ? 'large' : 'small'
 
   useRead(readMovies)

@@ -13,4 +13,8 @@ export default class ReviewsRepository extends AxiosRepository {
   async readReviewsByMovie(movieId: number): Promise<any> {
     return await super.get(`/by-movie/${movieId}`)
   }
+
+  async createReview(review: Review): Promise<any> {
+    return await super.post('/', review)
+  }
 }

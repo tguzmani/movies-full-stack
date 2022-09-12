@@ -17,7 +17,16 @@ const useSortedMovies = () => {
     // @ts-ignore
     .sort((m1, m2) => (m1?.rating - m2?.rating ? 1 : -1))
 
-  return { mostRecentMovies, topRatedMovies, theseMovies }
+  const alphabeticallySortedMovies = theseMovies
+    .slice(0)
+    .sort((m1, m2) => (m1.title > m2.title ? 1 : -1))
+
+  return {
+    mostRecentMovies,
+    topRatedMovies,
+    alphabeticallySortedMovies,
+    theseMovies,
+  }
 }
 
 export default useSortedMovies
