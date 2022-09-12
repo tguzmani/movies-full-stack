@@ -17,7 +17,22 @@ export class MoviesService {
   }
 
   async findAll() {
-    return this.movieRepository.find();
+    const movies = await this.movieRepository
+      .createQueryBuilder('movie')
+      .leftJoinAndSelect('movie.reviews', 'review')
+      .select([
+        'movie.*',
+        'avg(review.rating) as rating',
+        'count(review.rating) as "totalReviews"',
+      ])
+      .groupBy('movie.id')
+      .getRawMany();
+
+    return movies.map((movie) => ({
+      ...movie,
+      rating: movie.rating === null ? 0 : parseFloat(movie.rating),
+      totalReviews: parseInt(movie.totalReviews),
+    }));
   }
 
   async findById(id: number) {

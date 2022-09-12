@@ -24,12 +24,6 @@ export class UsersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/profile')
-  async getProfile(@Request() req) {
-    return await this.usersService.findById(req.user.id);
-  }
-
-  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findById(@Param('id') id: string) {
     return this.usersService.findById(+id);

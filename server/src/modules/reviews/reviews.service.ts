@@ -45,8 +45,14 @@ export class ReviewsService {
     return review !== null;
   }
 
-  findAll() {
-    return this.reviewsRepository.find();
+  findReviewsByMovie(movieId: number) {
+    return this.reviewsRepository
+      .createQueryBuilder('review')
+      .leftJoinAndSelect('review.movie', 'movie')
+      .leftJoinAndSelect('review.user', 'user')
+      .where('review.movie.id = :movieId', { movieId })
+      .select(['review', 'movie.id', 'user.id'])
+      .getMany();
   }
 
   findOne(id: number) {

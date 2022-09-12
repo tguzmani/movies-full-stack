@@ -7,7 +7,7 @@ export class CreateReviewDto {
   @IsNumber()
   @Max(5)
   @Min(0)
-  rating: string;
+  rating: number;
 
   @IsNotEmpty()
   movieId: number;

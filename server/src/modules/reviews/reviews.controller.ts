@@ -16,18 +16,18 @@ import { UpdateReviewDto } from './dto/update-review.dto';
 import { AdminGuard } from '../auth/admin.guard';
 
 @Controller('reviews')
-@UseGuards(JwtAuthGuard)
 export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createReviewDto: CreateReviewDto, @Request() req) {
     return this.reviewsService.create(createReviewDto, req.user.id);
   }
 
-  @Get()
-  findAll() {
-    return this.reviewsService.findAll();
+  @Get('by-movie/:movieId')
+  findfindReviewsByMovieAll(@Param() { movieId }) {
+    return this.reviewsService.findReviewsByMovie(movieId);
   }
 
   @Get(':id')
