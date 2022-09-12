@@ -45,6 +45,10 @@ const AppBar = () => {
 
   const navigate = useNavigate()
 
+  const handleManageMovies = () => {
+    navigate('/movie/manager')
+  }
+
   return (
     <MuiAppBar position='static'>
       <Toolbar>
@@ -76,6 +80,9 @@ const AppBar = () => {
             <Typography variant='body1'>
               {user?.firstName} {user?.lastName}
             </Typography>
+            {isAdmin && (
+              <Button onClick={handleManageMovies}>Manage Movies</Button>
+            )}
             <Button onClick={handleLogout}>Logout</Button>
           </Stack>
         )}
@@ -96,6 +103,11 @@ const AppBar = () => {
           open={Boolean(anchorEl)}
           onClose={handleCloseMenu}
         >
+          {isAdmin && (
+            <MenuItem onClick={handleManageMovies} key='logout'>
+              Manage Movies
+            </MenuItem>
+          )}
           <MenuItem onClick={handleLogout} key='logout'>
             Logout
           </MenuItem>

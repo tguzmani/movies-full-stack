@@ -33,7 +33,7 @@ const MoviePage = () => {
             <MovieDescription movie={movie} />
           </Grid>
           <Grid item xs={12} lg={5}>
-            <MovieReviews />
+            <MovieReviews movie={movie} />
           </Grid>
         </Grid>
       </Box>

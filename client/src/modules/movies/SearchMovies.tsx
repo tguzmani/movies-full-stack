@@ -25,7 +25,7 @@ const SearchMovies = () => {
   const size = matchMd ? 'small' : 'medium'
 
   return (
-    <Box mb={matchMd ? 0 : 2}>
+    <Box mb={matchMd ? 0 : 2} mx={matchMd ? 2 : 0}>
       <TextField
         fullWidth={!matchMd}
         placeholder='Search movies'

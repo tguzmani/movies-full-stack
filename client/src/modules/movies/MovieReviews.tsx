@@ -1,14 +1,19 @@
 import { Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import useResponsive from 'hooks/useResponsive'
+import useUserHasReviewInMovie from 'modules/reviews/hooks/useUserHasReviewInMovie'
+import ManageReview from 'modules/reviews/ManageReview'
 import Reviews from 'modules/reviews/Reviews'
 import React from 'react'
+import Movie from './domain/movie.entity'
 
-const MovieReviews = () => {
+const MovieReviews = ({ movie }: { movie?: Movie }) => {
   const matchMd = useResponsive('md')
 
   const height = matchMd ? '100vh' : '70vh'
   const titleVariant = matchMd ? 'h4' : 'h5'
+
+  const userHasReviewInMovie = useUserHasReviewInMovie(movie?.id)
 
   return (
     <Paper
@@ -22,6 +27,8 @@ const MovieReviews = () => {
         <Typography mb={3} gutterBottom variant={titleVariant}>
           Reviews
         </Typography>
+
+        {!userHasReviewInMovie && <ManageReview movie={movie} />}
 
         <Reviews />
       </Box>
