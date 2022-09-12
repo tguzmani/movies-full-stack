@@ -1,5 +1,6 @@
 import { Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import useAuth from 'hooks/useAuth'
 import useResponsive from 'hooks/useResponsive'
 import useUserHasReviewInMovie from 'modules/reviews/hooks/useUserHasReviewInMovie'
 import ManageReview from 'modules/reviews/ManageReview'
@@ -12,6 +13,8 @@ const MovieReviews = ({ movie }: { movie?: Movie }) => {
 
   const height = matchMd ? '100vh' : '70vh'
   const titleVariant = matchMd ? 'h4' : 'h5'
+
+  const isAuth = useAuth()
 
   const userHasReviewInMovie = useUserHasReviewInMovie(movie?.id)
 
@@ -28,7 +31,7 @@ const MovieReviews = ({ movie }: { movie?: Movie }) => {
           Reviews
         </Typography>
 
-        {!userHasReviewInMovie && <ManageReview movie={movie} />}
+        {!userHasReviewInMovie && isAuth && <ManageReview movie={movie} />}
 
         <Reviews />
       </Box>

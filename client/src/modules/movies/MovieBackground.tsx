@@ -16,7 +16,7 @@ const MovieBackground = ({ movie }: { movie?: Movie }) => {
         backgroundImage: `url(${movie?.backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        minHeight: `calc(${height} - 64px)`,
+        minHeight: `calc(${height} - 64px )`,
         width: '100%',
         filter: 'brightness(60%)',
       }}

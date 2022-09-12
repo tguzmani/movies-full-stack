@@ -23,11 +23,14 @@ import useForm from 'hooks/useForm'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
 import genres from './constants/movieGenres'
+import { useStoreActions } from 'config/easy-peasy.store'
 
 const UpdateMoviesDialog = ({ movie }: { movie: Movie }) => {
   const [open, setOpen] = useState(false)
   const [releaseDate, setReleaseDate] = useState(dayjs())
   // const [genre, setGenre] = useState('')
+
+  const { updateMovie } = useStoreActions(actions => actions.movies)
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -53,6 +56,7 @@ const UpdateMoviesDialog = ({ movie }: { movie: Movie }) => {
 
   const handleUpdateMovie = () => {
     const updatedMovie = {
+      id: movie.id,
       title: movieInfo.title,
       description: movieInfo.description,
       duration: movieInfo.duration,
@@ -63,7 +67,7 @@ const UpdateMoviesDialog = ({ movie }: { movie: Movie }) => {
       releaseDate: dayjs(releaseDate).format('YYYY-MM-DD'),
     }
 
-    console.log(updatedMovie)
+    updateMovie(updatedMovie)
 
     // handleClose()
   }

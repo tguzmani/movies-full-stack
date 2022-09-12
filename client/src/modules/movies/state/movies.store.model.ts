@@ -14,6 +14,8 @@ interface MoviesStoreModel {
   setFilteredMovies: Action<MoviesStoreModel>
 
   readMovies: Thunk<MoviesStoreModel>
+  createMovie: Thunk<MoviesStoreModel, Partial<Movie>>
+  updateMovie: Thunk<MoviesStoreModel, Movie>
 }
 
 export default MoviesStoreModel

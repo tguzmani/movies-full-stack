@@ -3,12 +3,13 @@ import useResponsive from 'hooks/useResponsive'
 import React from 'react'
 import Movie from './domain/movie.entity'
 import MovieRating from './MovieRating'
+import dayjs from 'dayjs'
 
 const MovieDescription = ({ movie }: { movie?: Movie }) => {
   const matchMd = useResponsive('md')
 
   const titleSize = matchMd ? '200px' : '90px'
-  const height = matchMd ? '100vh' : '65vh'
+  const height = matchMd ? '100vh' : '70vh'
 
   return (
     <Box m={3}>
@@ -35,6 +36,9 @@ const MovieDescription = ({ movie }: { movie?: Movie }) => {
           <Stack spacing={3} alignItems='center' direction='row'>
             <Typography variant='h6'>{movie?.genre}</Typography>
             <Typography variant='h6'>{movie?.duration} min</Typography>
+            <Typography variant='h6'>
+              {dayjs(movie?.releaseDate).format('YYYY')} min
+            </Typography>
           </Stack>
         </Grid>
       </Grid>

@@ -9,4 +9,12 @@ export default class MoviesRepository extends AxiosRepository {
   async readMovies(): Promise<Movie[]> {
     return await super.get('/')
   }
+
+  async createMovie(movie: any) {
+    return await super.post('/', movie)
+  }
+
+  async updateMovie(movie: any) {
+    return await super.put(`/${movie.id}`, movie)
+  }
 }

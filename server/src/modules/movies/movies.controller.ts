@@ -5,7 +5,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
   UseGuards,
@@ -36,7 +36,7 @@ export class MoviesController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
     return this.moviesService.update(+id, updateMovieDto);
   }

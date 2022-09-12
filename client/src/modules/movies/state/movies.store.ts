@@ -40,6 +40,22 @@ const moviesStore: MoviesStoreModel = {
 
     actions.setMovies(movies)
   }),
+
+  createMovie: thunk(async (actions, movie) => {
+    actions.setLoading(true)
+
+    await moviesRepository.createMovie(movie)
+
+    actions.readMovies()
+  }),
+
+  updateMovie: thunk(async (actions, movie) => {
+    actions.setLoading(true)
+
+    await moviesRepository.updateMovie(movie)
+
+    actions.readMovies()
+  }),
 }
 
 export default moviesStore
