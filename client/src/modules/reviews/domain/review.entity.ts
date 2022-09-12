@@ -1,7 +1,7 @@
-interface Movie {
+interface Review {
   id?: number
   description: string
   rating: number
 }
 
-export default Movie
+export default Review

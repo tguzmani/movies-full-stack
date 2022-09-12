@@ -1,6 +1,7 @@
 // import Login from 'modules/users/views/Login'
 import LoginPage from 'pages/LoginPage'
 import HomePage from 'pages/HomePage'
+import MoviePage from 'pages/MoviePage'
 
 const routes = {
   home: {
@@ -12,6 +13,12 @@ const routes = {
   login: {
     path: '/',
     element: LoginPage,
+    public: true,
+  },
+
+  movie: {
+    path: '/movie/:movieId',
+    element: MoviePage,
     public: true,
   },
 }

@@ -5,11 +5,13 @@ import MovieItem from './MovieItem'
 
 const Movies = ({ movies }: { movies: Movie[] }) => {
   return (
-    <Stack direction='row'>
-      {movies.map(movie => (
-        <MovieItem movie={movie} />
-      ))}
-    </Stack>
+    <div className='horizontal-scroller'>
+      <Stack direction='row' my={3} spacing={3}>
+        {movies.map(movie => (
+          <MovieItem movie={movie} />
+        ))}
+      </Stack>
+    </div>
   )
 }
 

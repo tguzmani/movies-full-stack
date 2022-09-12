@@ -17,15 +17,15 @@ const HomePage = () => {
   const matchMd = useResponsive('md')
 
   const titleVariant = matchMd ? 'h3' : 'h5'
-  const iconSize = matchMd ? 'medium' : 'small'
+  const iconSize = matchMd ? 'large' : 'small'
 
   useRead(readMovies)
 
   return (
     <div>
       <Box mb={3}>
-        <Stack direction='row' alignItems='center'>
-          <HistoryIcon size={iconSize} />
+        <Stack direction='row' alignItems='center' spacing={2}>
+          <HistoryIcon fontSize={iconSize} />
           <Typography gutterBottom variant={titleVariant}>
             Most Recent
           </Typography>
@@ -33,8 +33,8 @@ const HomePage = () => {
         <Movies movies={mostRecentMovies} />
       </Box>
 
-      <Stack direction='row' alignItems='center'>
-        <StarIcon size={iconSize} />
+      <Stack direction='row' alignItems='center' spacing={3}>
+        <StarIcon fontSize={iconSize} />
         <Typography gutterBottom variant={titleVariant}>
           Top Rated
         </Typography>

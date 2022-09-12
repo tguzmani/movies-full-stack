@@ -6,7 +6,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <AppBar />
-      <Box m={3}>{children}</Box>
+      <Box>{children}</Box>
     </>
   )
 }
