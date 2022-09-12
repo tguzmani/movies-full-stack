@@ -14,6 +14,12 @@ export default class AxiosRepository implements Repository {
         'Content-Type': 'application/json',
       },
     })
+
+    this.instance.interceptors.request.use(function (config: any) {
+      const token = localStorage.getItem('token')
+      config.headers.Authorization = token ? `Bearer ${token}` : ''
+      return config
+    })
   }
 
   endPoint(URL: string) {

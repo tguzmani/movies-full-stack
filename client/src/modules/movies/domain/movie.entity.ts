@@ -8,6 +8,8 @@ interface Movie {
   titleImage: string | null
   duration: number
   genre: string
+  rating?: number
+  totalReviews?: number
   // reviews: Review[];
 }
 

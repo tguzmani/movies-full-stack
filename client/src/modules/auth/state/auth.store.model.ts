@@ -9,10 +9,15 @@ export interface Credentials {
 interface AuthStoreModel {
   user?: User
   loading: boolean
+  isAuthenticated: boolean
 
   login: Thunk<AuthStoreModel, Credentials>
+  logout: Thunk<AuthStoreModel>
   setUser: Action<AuthStoreModel, User>
+  unsetUser: Action<AuthStoreModel>
   setLoading: Action<AuthStoreModel, boolean>
+
+  readProfile: Thunk<AuthStoreModel>
 }
 
 export default AuthStoreModel

@@ -1,3 +1,4 @@
+import Layout from 'modules/layout/Layout'
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -17,18 +18,10 @@ const Router = () => {
           <Route
             key={route.path}
             path={route.path}
-            element={<route.element />}
-          />
-        ))}
-
-        {privateRoutes.map(route => (
-          <Route
-            key={route.path}
-            path={route.path}
             element={
-              <PrivateRoute>
+              <Layout>
                 <route.element />
-              </PrivateRoute>
+              </Layout>
             }
           />
         ))}

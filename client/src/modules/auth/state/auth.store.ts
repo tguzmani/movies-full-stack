@@ -7,11 +7,19 @@ const authRepository = new AuthRepository()
 
 const authStore: AuthStoreModel = {
   user: undefined,
+  isAuthenticated: false,
   loading: false,
 
   // Actions
   setUser: action((state, user: User) => {
     state.user = user
+    state.isAuthenticated = true
+    state.loading = false
+  }),
+
+  unsetUser: action(state => {
+    state.user = undefined
+    state.isAuthenticated = false
     state.loading = false
   }),
 
@@ -19,10 +27,32 @@ const authStore: AuthStoreModel = {
     state.loading = loading
   }),
 
-  login: thunk(async (state, credentials) => {
-    const token = await authRepository.login(credentials)
+  login: thunk(async (actions, credentials) => {
+    actions.setLoading(true)
 
-    console.log(token)
+    const { access_token } = await authRepository.login(credentials)
+
+    localStorage.setItem('token', access_token)
+
+    actions.readProfile()
+  }),
+
+  logout: thunk(async actions => {
+    actions.setLoading(true)
+
+    localStorage.removeItem('token')
+
+    actions.unsetUser()
+
+    actions.readProfile()
+  }),
+
+  readProfile: thunk(async actions => {
+    actions.setLoading(true)
+
+    const user = await authRepository.readProfile()
+
+    actions.setUser(user)
   }),
 }
 

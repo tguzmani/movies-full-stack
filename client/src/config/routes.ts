@@ -5,15 +5,15 @@ import HomePage from 'pages/HomePage'
 const routes = {
   home: {
     path: '/',
-    element: LoginPage,
+    element: HomePage,
     public: true,
   },
 
-  // login: {
-  //   path: '/login',
-  //   element: Login,
-  //   public: true,
-  // },
+  login: {
+    path: '/',
+    element: LoginPage,
+    public: true,
+  },
 }
 
 export default routes

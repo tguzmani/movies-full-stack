@@ -10,7 +10,7 @@ const moviesStore: MoviesStoreModel = {
 
   // Actions
   setMovies: action((state, movies) => {
-    state.movies = [...movies, ...movies, ...movies, ...movies, ...movies]
+    state.movies = movies
     state.loading = false
   }),
 
