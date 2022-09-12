@@ -19,7 +19,7 @@ const MovieReviews = () => {
       }}
     >
       <Box p={3}>
-        <Typography gutterBottom variant={titleVariant}>
+        <Typography mb={3} gutterBottom variant={titleVariant}>
           Reviews
         </Typography>
 

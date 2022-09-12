@@ -6,7 +6,7 @@ import Movie from './domain/movie.entity'
 const MovieBackground = ({ movie }: { movie?: Movie }) => {
   const matchMd = useResponsive('md')
 
-  const height = matchMd ? '100%' : '70%'
+  const height = matchMd ? '100vh' : '70vh'
 
   return (
     <Paper
@@ -18,7 +18,7 @@ const MovieBackground = ({ movie }: { movie?: Movie }) => {
         backgroundPosition: 'center',
         minHeight: `calc(${height} - 64px)`,
         width: '100%',
-        filter: 'brightness(40%)',
+        filter: 'brightness(60%)',
       }}
     ></Paper>
   )

@@ -51,7 +51,13 @@ export class ReviewsService {
       .leftJoinAndSelect('review.movie', 'movie')
       .leftJoinAndSelect('review.user', 'user')
       .where('review.movie.id = :movieId', { movieId })
-      .select(['review', 'movie.id', 'user.id'])
+      .select([
+        'review',
+        'movie.id',
+        'user.id',
+        'user.firstName',
+        'user.lastName',
+      ])
       .getMany();
   }
 

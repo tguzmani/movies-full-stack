@@ -1,6 +1,6 @@
 import { useStoreActions } from '../config/easy-peasy.store'
 import { LoadingButton } from '@mui/lab'
-import { Paper } from '@mui/material'
+import { Paper, Typography } from '@mui/material'
 import { TextField } from '@mui/material'
 import { Grid, Box } from '@mui/material'
 import useForm from 'hooks/useForm'
@@ -42,36 +42,47 @@ const LoginPage = () => {
       <Grid item xs={4} />
 
       <Grid item xs={12} lg={4}>
-        <Paper>
-          <Box p={3}>
-            <TextField
-              fullWidth
-              margin='normal'
-              label='E-mail'
-              {...bindCredentials('email')}
-            />
-            <TextField
-              fullWidth
-              label='User'
-              margin='normal'
-              {...bindCredentials('password')}
-            />
-            <LoadingButton
-              loading={false}
-              loadingPosition='center'
-              variant='contained'
-              fullWidth
-              onClick={handleLogin}
-              disabled={areCredentialsEmpty}
-            >
-              Login
-            </LoadingButton>
-          </Box>
-        </Paper>
+        <Box m={3}>
+          <Paper>
+            <Box p={3}>
+              <Typography align='center' gutterBottom variant='h3'>
+                OneMovie
+              </Typography>
+
+              <Typography align='center' gutterBottom variant='h5'>
+                Login
+              </Typography>
+
+              <TextField
+                fullWidth
+                margin='normal'
+                label='E-mail'
+                {...bindCredentials('email')}
+              />
+              <TextField
+                fullWidth
+                label='User'
+                margin='normal'
+                {...bindCredentials('password')}
+              />
+              <Box mt={3}>
+                <LoadingButton
+                  loading={false}
+                  loadingPosition='center'
+                  variant='contained'
+                  fullWidth
+                  onClick={handleLogin}
+                  disabled={areCredentialsEmpty}
+                >
+                  Login
+                </LoadingButton>
+              </Box>
+            </Box>
+          </Paper>
+        </Box>
       </Grid>
 
       <Grid item xs={4} />
-      <Paper></Paper>
     </Grid>
   )
 }

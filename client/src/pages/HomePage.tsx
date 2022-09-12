@@ -8,11 +8,15 @@ import Movies from '../modules/movies/Movies'
 
 import HistoryIcon from '@mui/icons-material/History'
 import StarIcon from '@mui/icons-material/Star'
+import SearchIcon from '@mui/icons-material/Search'
+import SearchMovies from 'modules/movies/SearchMovies'
 
 const HomePage = () => {
   const { readMovies } = useStoreActions(actions => actions.movies)
 
   const { mostRecentMovies, topRatedMovies } = useSortedMovies()
+
+  const { filterString } = useStoreState(state => state.movies)
 
   const matchMd = useResponsive('md')
 
@@ -22,25 +26,47 @@ const HomePage = () => {
   useRead(readMovies)
 
   return (
-    <div>
-      <Box mb={3}>
-        <Stack direction='row' alignItems='center' spacing={2}>
-          <HistoryIcon fontSize={iconSize} />
-          <Typography gutterBottom variant={titleVariant}>
-            Most Recent
-          </Typography>
-        </Stack>
-        <Movies movies={mostRecentMovies} />
-      </Box>
+    <>
+      <Box p={3}>
+        {!matchMd && <SearchMovies />}
 
-      <Stack direction='row' alignItems='center' spacing={3}>
-        <StarIcon fontSize={iconSize} />
-        <Typography gutterBottom variant={titleVariant}>
-          Top Rated
-        </Typography>
-      </Stack>
-      <Movies movies={topRatedMovies} />
-    </div>
+        {filterString === '' && (
+          <>
+            <Box mb={3}>
+              <Stack direction='row' alignItems='center' spacing={2}>
+                <HistoryIcon fontSize={iconSize} />
+                <Typography gutterBottom variant={titleVariant}>
+                  Most Recent
+                </Typography>
+              </Stack>
+              <Movies movies={mostRecentMovies} />
+            </Box>
+
+            <Box mb={3}>
+              <Stack direction='row' alignItems='center' spacing={3}>
+                <StarIcon fontSize={iconSize} />
+                <Typography gutterBottom variant={titleVariant}>
+                  Top Rated
+                </Typography>
+              </Stack>
+              <Movies movies={topRatedMovies} />
+            </Box>
+          </>
+        )}
+
+        {filterString !== '' && (
+          <Box mb={3}>
+            <Stack direction='row' alignItems='center' spacing={2}>
+              <SearchIcon fontSize={iconSize} />
+              <Typography gutterBottom variant={titleVariant}>
+                Search results
+              </Typography>
+            </Stack>
+            <Movies movies={mostRecentMovies} />
+          </Box>
+        )}
+      </Box>
+    </>
   )
 }
 

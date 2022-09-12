@@ -6,7 +6,7 @@ const MovieRating = ({ movie }: { movie?: Movie }) => {
   if (movie?.rating === 0)
     return <Typography variant='body2'>No ratings</Typography>
 
-  return <Rating value={movie?.rating} readOnly />
+  return <Rating value={movie?.rating} readOnly precision={0.5} />
 }
 
 export default MovieRating

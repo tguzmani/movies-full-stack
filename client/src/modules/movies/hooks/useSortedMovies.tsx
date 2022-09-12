@@ -2,9 +2,11 @@ import { useStoreState } from 'config/easy-peasy.store'
 import dayjs from 'dayjs'
 
 const useSortedMovies = () => {
-  const { movies } = useStoreState(state => state.movies)
+  const { movies, filterString, filteredMovies } = useStoreState(
+    state => state.movies
+  )
 
-  const theseMovies = movies
+  const theseMovies = filterString !== '' ? filteredMovies : movies
 
   const mostRecentMovies = theseMovies
     .slice(0)

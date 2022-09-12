@@ -11,7 +11,7 @@ const routes = {
   },
 
   login: {
-    path: '/',
+    path: '/login',
     element: LoginPage,
     public: true,
   },

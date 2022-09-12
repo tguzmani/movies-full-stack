@@ -1,5 +1,5 @@
 import { Box, Grid } from '@mui/material'
-import { useStoreActions } from 'config/easy-peasy.store'
+import { useStoreActions, useStoreState } from 'config/easy-peasy.store'
 import useRead from 'hooks/useRead'
 import useMovieById from 'modules/movies/hooks/useMovieById'
 import MovieBackground from 'modules/movies/MovieBackground'
@@ -12,6 +12,7 @@ const MoviePage = () => {
   const { movieId } = useParams()
   const { readMovies } = useStoreActions(actions => actions.movies)
   const { readReviewsByMovie } = useStoreActions(actions => actions.reviews)
+  const { movies } = useStoreState(state => state.movies)
 
   useRead(readMovies)
 
@@ -20,7 +21,7 @@ const MoviePage = () => {
 
   React.useEffect(() => {
     readReviewsByMovie(movie?.id as number)
-  }, [])
+  }, [movies])
 
   return (
     <div>
