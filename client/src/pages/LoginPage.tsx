@@ -10,6 +10,7 @@ import axios from 'axios'
 import useResponsive from 'hooks/useResponsive'
 import { useNavigate } from 'react-router-dom'
 import useAuth from 'hooks/useAuth'
+import Alert from 'modules/alerts/Alert'
 
 const LoginPage = () => {
   const { login } = useStoreActions(state => state.auth)
@@ -40,6 +41,8 @@ const LoginPage = () => {
   return (
     <Grid container>
       <Grid item xs={4} />
+
+      <Alert />
 
       <Grid item xs={12} lg={4}>
         <Box m={3}>

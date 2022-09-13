@@ -3,6 +3,7 @@ import { useStoreActions } from 'config/easy-peasy.store'
 import useAdmin from 'hooks/useAdmin'
 import useAuth from 'hooks/useAuth'
 import useRead from 'hooks/useRead'
+import CreateMovieDialog from 'modules/movies/CreateMovieDialog'
 import useSortedMovies from 'modules/movies/hooks/useSortedMovies'
 import SearchMovies from 'modules/movies/SearchMovies'
 import UpdateMoviesDialog from 'modules/movies/UpdateMoviesDialog'
@@ -33,9 +34,11 @@ const MovieManagerPage = () => {
           </Typography>
         </Box>
 
+        <CreateMovieDialog />
+
         <List>
           {alphabeticallySortedMovies.map(movie => (
-            <UpdateMoviesDialog movie={movie} />
+            <UpdateMoviesDialog key={movie.id} movie={movie} />
           ))}
         </List>
       </>

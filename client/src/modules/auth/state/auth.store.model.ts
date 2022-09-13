@@ -11,13 +11,14 @@ interface AuthStoreModel {
   loading: boolean
   isAuthenticated: boolean
 
-  login: Thunk<AuthStoreModel, Credentials>
-  logout: Thunk<AuthStoreModel>
   setUser: Action<AuthStoreModel, User>
   unsetUser: Action<AuthStoreModel>
   setLoading: Action<AuthStoreModel, boolean>
 
+  logout: Thunk<AuthStoreModel>
+  login: Thunk<AuthStoreModel, Credentials>
   readProfile: Thunk<AuthStoreModel>
+  signUp: Thunk<AuthStoreModel, any>
 }
 
 export default AuthStoreModel

@@ -16,7 +16,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     console.log('password', password);
 
     if (!user) {
-      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'User not found or incorrect password',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     return user;

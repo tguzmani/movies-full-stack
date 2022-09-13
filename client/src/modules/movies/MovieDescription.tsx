@@ -1,4 +1,4 @@
-import { Box, Grid, Rating, Stack, Typography } from '@mui/material'
+import { Box, Grid, Stack, Typography } from '@mui/material'
 import useResponsive from 'hooks/useResponsive'
 import React from 'react'
 import Movie from './domain/movie.entity'
@@ -37,7 +37,7 @@ const MovieDescription = ({ movie }: { movie?: Movie }) => {
             <Typography variant='h6'>{movie?.genre}</Typography>
             <Typography variant='h6'>{movie?.duration} min</Typography>
             <Typography variant='h6'>
-              {dayjs(movie?.releaseDate).format('YYYY')} min
+              {dayjs(movie?.releaseDate).format('YYYY')}
             </Typography>
           </Stack>
         </Grid>

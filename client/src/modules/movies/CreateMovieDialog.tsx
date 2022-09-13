@@ -25,12 +25,11 @@ import dayjs from 'dayjs'
 import genres from './constants/movieGenres'
 import { useStoreActions } from 'config/easy-peasy.store'
 
-const UpdateMoviesDialog = ({ movie }: { movie: Movie }) => {
+const CreateMovieDialog = () => {
   const [open, setOpen] = useState(false)
-  const [releaseDate, setReleaseDate] = useState(dayjs(movie?.releaseDate))
-  // const [genre, setGenre] = useState('')
+  const [releaseDate, setReleaseDate] = useState(dayjs())
 
-  const { updateMovie } = useStoreActions(actions => actions.movies)
+  const { createMovie } = useStoreActions(actions => actions.movies)
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -41,25 +40,24 @@ const UpdateMoviesDialog = ({ movie }: { movie: Movie }) => {
   }
 
   const [movieInfo, bindMovie, areFieldsEmpty] = useForm({
-    title: movie.title,
-    description: movie.description,
-    duration: movie.duration,
-    posterImage: movie.posterImage,
-    backgroundImage: movie.backgroundImage,
-    titleImage: movie.titleImage,
-    genre: movie.genre,
+    title: '',
+    description: '',
+    duration: '',
+    posterImage: '',
+    backgroundImage: '',
+    titleImage: '',
+    genre: '',
   })
 
   const handleChange = (newReleaseDate: any) => {
     setReleaseDate(newReleaseDate)
   }
 
-  const handleUpdateMovie = () => {
+  const handleCreateMovie = () => {
     const updatedMovie = {
-      id: movie.id,
       title: movieInfo.title,
       description: movieInfo.description,
-      duration: movieInfo.duration,
+      duration: +movieInfo.duration,
       posterImage: movieInfo.posterImage,
       backgroundImage: movieInfo.backgroundImage,
       titleImage: movieInfo.titleImage,
@@ -67,14 +65,16 @@ const UpdateMoviesDialog = ({ movie }: { movie: Movie }) => {
       releaseDate: dayjs(releaseDate).format('YYYY-MM-DD'),
     }
 
-    updateMovie(updatedMovie)
+    createMovie(updatedMovie)
 
     // handleClose()
   }
 
   return (
     <>
-      <ListItemButton onClick={handleClickOpen}>{movie?.title}</ListItemButton>
+      <Button variant='contained' onClick={handleClickOpen}>
+        Create movie
+      </Button>
 
       <Dialog fullScreen open={open} onClose={handleClose}>
         <AppBar sx={{ position: 'relative' }}>
@@ -88,14 +88,14 @@ const UpdateMoviesDialog = ({ movie }: { movie: Movie }) => {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant='h6' component='div'>
-              Update movie
+              Create movie
             </Typography>
             <Button
               variant='contained'
-              onClick={handleUpdateMovie}
+              onClick={handleCreateMovie}
               disabled={areFieldsEmpty}
             >
-              Update Movie
+              Create movie
             </Button>
           </Toolbar>
         </AppBar>
@@ -204,4 +204,4 @@ const UpdateMoviesDialog = ({ movie }: { movie: Movie }) => {
   )
 }
 
-export default UpdateMoviesDialog
+export default CreateMovieDialog

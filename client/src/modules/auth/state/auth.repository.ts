@@ -13,4 +13,8 @@ export default class AuthRepository extends AxiosRepository {
   async readProfile() {
     return await super.get('/profile')
   }
+
+  async signUp(data: any) {
+    return await super.post('/sign-up', data)
+  }
 }

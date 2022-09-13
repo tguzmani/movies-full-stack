@@ -1,4 +1,5 @@
 import { action, thunk } from 'easy-peasy'
+import Alert from 'modules/alerts/domain/alert.class'
 import User from '../domain/user.entity'
 import AuthRepository from './auth.repository'
 import AuthStoreModel from './auth.store.model'
@@ -27,14 +28,34 @@ const authStore: AuthStoreModel = {
     state.loading = loading
   }),
 
-  login: thunk(async (actions, credentials) => {
-    actions.setLoading(true)
+  login: thunk(async (actions, credentials, { getStoreActions }) => {
+    try {
+      actions.setLoading(true)
 
-    const { access_token } = await authRepository.login(credentials)
+      const { access_token } = await authRepository.login(credentials)
 
-    localStorage.setItem('token', access_token)
+      localStorage.setItem('token', access_token)
 
-    actions.readProfile()
+      actions.readProfile()
+    } catch (error: any) {
+      console.log(error.response.data.message)
+      console.log('jasdjhsd')
+      // @ts-ignore
+      getStoreActions().alerts.setAlert(new Alert(error.response.data.message))
+      actions.setLoading(false)
+    }
+  }),
+
+  signUp: thunk(async (actions, data, { getStoreActions }) => {
+    try {
+      actions.setLoading(true)
+
+      actions.login({ email: data.email, password: data.password })
+    } catch (error) {
+      // @ts-ignore
+      getStoreActions().alerts.setAlert(new Alert(error.response.data.message))
+      actions.setLoading(false)
+    }
   }),
 
   logout: thunk(async actions => {
