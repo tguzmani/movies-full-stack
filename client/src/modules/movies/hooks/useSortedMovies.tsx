@@ -15,7 +15,7 @@ const useSortedMovies = () => {
   const topRatedMovies = theseMovies
     .slice(0)
     // @ts-ignore
-    .sort((m1, m2) => (m1?.rating - m2?.rating ? -1 : 1))
+    .sort((m1, m2) => (m1?.rating > m2?.rating ? -1 : 1))
 
   const alphabeticallySortedMovies = theseMovies
     .slice(0)
