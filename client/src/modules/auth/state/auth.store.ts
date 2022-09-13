@@ -38,8 +38,6 @@ const authStore: AuthStoreModel = {
 
       actions.readProfile()
     } catch (error: any) {
-      console.log(error.response.data.message)
-      console.log('jasdjhsd')
       // @ts-ignore
       getStoreActions().alerts.setAlert(new Alert(error.response.data.message))
       actions.setLoading(false)
@@ -48,6 +46,8 @@ const authStore: AuthStoreModel = {
 
   signUp: thunk(async (actions, data, { getStoreActions }) => {
     try {
+      await await authRepository.signUp(data)
+
       actions.setLoading(true)
 
       actions.login({ email: data.email, password: data.password })

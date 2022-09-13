@@ -12,8 +12,8 @@ import { useNavigate } from 'react-router-dom'
 import useAuth from 'hooks/useAuth'
 import Alert from 'modules/alerts/Alert'
 
-const LoginPage = () => {
-  const { login } = useStoreActions(state => state.auth)
+const RegisterPage = () => {
+  const { signUp } = useStoreActions(state => state.auth)
   const { readMovies } = useStoreActions(state => state.movies)
 
   useRead(readMovies)
@@ -21,15 +21,18 @@ const LoginPage = () => {
   const navigate = useNavigate()
 
   const initialState = {
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
+    passwordConfirm: '',
   }
 
   const [credentials, bindCredentials, areCredentialsEmpty] =
     useForm(initialState)
 
   const handleLogin = (e: any) => {
-    login(credentials)
+    signUp(credentials)
   }
 
   const isAuth = useAuth()
@@ -53,21 +56,43 @@ const LoginPage = () => {
               </Typography>
 
               <Typography align='center' gutterBottom variant='h5'>
-                Login
+                Register
               </Typography>
 
               <TextField
                 fullWidth
                 margin='normal'
+                label='First name'
+                {...bindCredentials('firstName')}
+              />
+              <TextField
+                fullWidth
+                label='Last name'
+                margin='normal'
+                {...bindCredentials('lastName')}
+              />
+
+              <TextField
+                fullWidth
                 label='E-mail'
+                margin='normal'
                 {...bindCredentials('email')}
               />
+
               <TextField
                 fullWidth
                 label='Password'
                 type='password'
                 margin='normal'
                 {...bindCredentials('password')}
+              />
+
+              <TextField
+                fullWidth
+                label='Password confirmation'
+                type='password'
+                margin='normal'
+                {...bindCredentials('passwordConfirm')}
               />
               <Box mt={3}>
                 <LoadingButton
@@ -78,7 +103,7 @@ const LoginPage = () => {
                   onClick={handleLogin}
                   disabled={areCredentialsEmpty}
                 >
-                  Login
+                  Register
                 </LoadingButton>
               </Box>
             </Box>
@@ -91,4 +116,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default RegisterPage

@@ -3,6 +3,7 @@ import LoginPage from 'pages/LoginPage'
 import HomePage from 'pages/HomePage'
 import MoviePage from 'pages/MoviePage'
 import MovieManagerPage from 'pages/MovieManagerPage'
+import RegisterPage from 'pages/RegisterPage'
 
 const routes = {
   home: {
@@ -14,6 +15,12 @@ const routes = {
   login: {
     path: '/login',
     element: LoginPage,
+    public: true,
+  },
+
+  register: {
+    path: '/register',
+    element: RegisterPage,
     public: true,
   },
 

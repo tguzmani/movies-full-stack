@@ -58,9 +58,11 @@ const AppBar = () => {
               <ArrowBackIcon />
             </IconButton>
           )}
-          <Typography variant='h6' component='div'>
-            OneMovie
-          </Typography>
+          <Box onClick={() => navigate('/')} sx={{ cursor: 'pointer' }}>
+            <Typography variant='h6' component='div'>
+              OneMovie
+            </Typography>
+          </Box>
         </Stack>
 
         <Box sx={{ flexGrow: 1 }}></Box>
@@ -70,7 +72,9 @@ const AppBar = () => {
         {!isAuth && (
           <Stack direction='row' spacing={1}>
             <Button onClick={() => navigate('/login')}>Login</Button>
-            <Button variant='contained'>Sign up</Button>
+            <Button onClick={() => navigate('/register')} variant='contained'>
+              Sign up
+            </Button>
           </Stack>
         )}
 
